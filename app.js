@@ -5,6 +5,14 @@ function mostrarEstadoVacio() {
   aviso.hidden = TAREAS.length > 0;
 }
 
+function actualizarContador() {
+  const pendientes = TAREAS.filter(function (t) {
+    return !t.hecha;
+  }).length;
+  document.querySelector("#contador").textContent = pendientes + " pendientes";
+}
+
+
 function render() {
   const lista = document.querySelector("#lista");
   lista.innerHTML = "";
@@ -13,9 +21,10 @@ function render() {
     li.className = t.hecha ? "tarea hecha" : "tarea";
     li.textContent = t.texto;
     lista.appendChild(li);
-    mostrarEstadoVacio();
 
   });
+  actualizarContador();
+  mostrarEstadoVacio();
 }
 
 render();
