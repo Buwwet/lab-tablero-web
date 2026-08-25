@@ -1,8 +1,9 @@
-const TAREAS = [
-  { texto: "Clonar el repositorio", hecha: true },
-  { texto: "Crear una rama", hecha: false },
-  { texto: "Abrir un Pull Request", hecha: false },
-];
+const TAREAS = [];
+
+function mostrarEstadoVacio() {
+  const aviso = document.querySelector("#vacio");
+  aviso.hidden = TAREAS.length > 0;
+}
 
 function actualizarContador() {
   const pendientes = TAREAS.filter(function (t) {
@@ -20,8 +21,10 @@ function render() {
     li.className = t.hecha ? "tarea hecha" : "tarea";
     li.textContent = t.texto;
     lista.appendChild(li);
+
   });
   actualizarContador();
+  mostrarEstadoVacio();
 }
 
 render();
